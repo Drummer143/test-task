@@ -1,0 +1,56 @@
+.wrapper {
+    width: 357px;
+    height: 314px;
+
+    padding: 1.5rem;
+
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+
+    border-radius: 16px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10);
+    font-family: "Proxima Nova Rg", sans-serif;
+    font-style: normal;
+    transition-property: transform, box-shadow, background-color;
+    transition-duration: 150ms;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-2%);
+        box-shadow: 0px 10px 25px 6px rgba(0, 0, 0, 0.10);
+    }
+
+    &:active {
+        background-color: #eee;
+    }
+
+    &:focus {
+        outline: solid 1px rgba($color: #000000, $alpha: 0.5);
+    }
+}
+
+.additionalInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.additionalInfoItem {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+}
+
+.username {
+    color: var(--plumbum, #262C40);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+}
