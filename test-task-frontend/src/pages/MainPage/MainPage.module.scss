@@ -1,3 +1,13 @@
 .wrapper {
+    max-height: 100vh;
+
     padding: 5rem 4rem;
+
+    overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        padding: 5rem 2rem;
+    }
 }

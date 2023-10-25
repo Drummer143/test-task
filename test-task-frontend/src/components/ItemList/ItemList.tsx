@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { useAppStore } from '../../store';
-import { useGetUsers } from '../../api';
 import UserCard from '../UserCard/UserCard';
+import { useGetUsers } from '../../api';
+import { useAppStore } from '../../store';
+
+import styles from "./ItemList.module.scss";
+import UserModal from '../UserModal/UserModal';
 
 export const ItemList: React.FC = () => {
     const { query } = useAppStore();
+    const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
 
     const { fetchUsers, loading, users } = useGetUsers();
 
@@ -18,8 +22,18 @@ export const ItemList: React.FC = () => {
     }
 
     return (
-        <div>
-            {users.slice(0, 1).map(u => <UserCard key={u.phone} user={u} />)}
-        </div>
+        <>
+            <div className={styles.wrapper}>
+                {users.map((u) => (
+                    <UserCard
+                        onClick={() => setSelectedUser(u)}
+                        key={u.phone}
+                        user={u}
+                    />
+                ))}
+            </div>
+
+            <UserModal user={selectedUser} />
+        </>
     )
 }

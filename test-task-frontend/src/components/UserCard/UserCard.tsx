@@ -7,11 +7,13 @@ import styles from "./UserCard.module.scss";
 
 type UserCardProps = {
     user: User
+
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
+const UserCard: React.FC<UserCardProps> = ({ user, onClick }) => {
     return (
-        <button type='button' className={styles.wrapper}>
+        <button type='button' className={styles.wrapper} onClick={onClick}>
             <h3 className={styles.username}>{user.name}</h3>
 
             <div className={styles.additionalInfo}>
