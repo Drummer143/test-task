@@ -33,7 +33,10 @@ export const ItemList: React.FC = () => {
                 ))}
             </div>
 
-            <UserModal user={selectedUser} />
+            <UserModal
+                onClose={() => setSelectedUser(undefined)}
+                user={selectedUser}
+            />
         </>
     )
 }
