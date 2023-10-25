@@ -11,14 +11,29 @@ export const ItemList: React.FC = () => {
     const { query } = useAppStore();
     const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
 
-    const { fetchUsers, loading, users } = useGetUsers();
+    const { fetchUsers, loading, users, error } = useGetUsers();
 
     useEffect(() => {
         fetchUsers(query);
     }, [fetchUsers, query]);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <p className={styles.empty_list_alert}>Loading...</p>;
+    }
+
+    if (error) {
+        return <p className={styles.empty_list_alert}>Произошла ошибка при получении данных с сервера. Попробуйте позже.</p>
+    }
+
+    if (!users.length) {
+        return (
+            <p className={styles.empty_list_alert}>
+                {query
+                    ? <>`Пользователей с ФИО, в которых есть <b>{query}</b> не найдено`</>
+                    : "Список пользователе пуст."
+                }
+            </p>
+        );
     }
 
     return (

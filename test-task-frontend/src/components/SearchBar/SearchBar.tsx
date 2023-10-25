@@ -12,14 +12,20 @@ export const SearchBar: React.FC = () => {
     const [inputValue, setInputValue] = useState("");
     const [searchValue] = useDebounce(inputValue, 500);
 
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => setInputValue(e.target.value);
+
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = e => {
+        e.preventDefault();
+
+        (document.activeElement as HTMLElement | null)?.blur();
+    };
+
     useEffect(() => {
         setQuery(searchValue);
     }, [searchValue, setQuery]);
 
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => setInputValue(e.target.value);
-
     return (
-        <form className={styles.wrapper}>
+        <form className={styles.wrapper} onSubmit={handleSubmit}>
             <input required name="search" className={styles.input} onChange={handleChange} value={inputValue} />
 
             <button type="submit" className={styles.searchButton}>
